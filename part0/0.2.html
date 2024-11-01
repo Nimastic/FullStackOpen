@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Basics Example</title>
+
+  <!-- Link to the CSS file -->
+  <link href="styles/style.css" rel="stylesheet" />
+
+  <!-- Link to Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+</head>
+<body>
+
+  <header>
+    <h1>CSS Basics</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Introduction to CSS</h2>
+      <p>CSS (Cascading Style Sheets) is the code that styles web content. CSS basics walks through what you need to get started. We'll answer questions like: How do I make text red? How do I make content display at a certain location in the layout? How do I decorate my webpage with background images and colors?</p>
+      
+      <h2>What is CSS?</h2>
+      <p>CSS is not a programming language; it's a style sheet language used to selectively style HTML elements.</p>
+      
+      <pre><code>p {
+  color: red;
+}</code></pre>
+      <p>Save the CSS in a file named <code>style.css</code> and link it in your HTML document to apply these styles.</p>
+      
+      <h2>Anatomy of a CSS Ruleset</h2>
+      <p>Each CSS ruleset includes a selector, properties, and values. Here is an example:</p>
+      
+      <pre><code>p {
+  color: red;
+  width: 500px;
+  border: 1px solid black;
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>Fonts and Text</h2>
+      <p>Add the Open Sans font to your page for consistent typography:</p>
+      
+      <pre><code><link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" /></code></pre>
+    </section>
+
+    <section>
+      <h2>CSS: All About Boxes</h2>
+      <p>Most HTML elements can be considered boxes with padding, borders, and margins. You can style these boxes with CSS properties like width, background-color, padding, border, and margin.</p>
+    </section>
+
+    <section>
+      <h2>Centering an Image</h2>
+      <p>Using <code>display: block;</code> and <code>margin: 0 auto;</code>, you can center images and other inline elements:</p>
+      
+      <pre><code>img {
+  display: block;
+  margin: 0 auto;
+}</code></pre>
+    </section>
+  </main>
+
+</body>
+</html>

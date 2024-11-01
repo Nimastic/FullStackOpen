@@ -1,0 +1,45 @@
+/* Base styles for the document */
+html {
+    font-size: 10px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #00539f;
+  }
+  
+  /* Styling the body */
+  body {
+    width: 600px;
+    margin: 0 auto;
+    background-color: #ff9500;
+    padding: 0 20px 20px;
+    border: 5px solid black;
+  }
+  
+  /* Header and main title styles */
+  h1 {
+    font-size: 60px;
+    margin: 0;
+    padding: 20px 0;
+    color: #00539f;
+    text-shadow: 3px 3px 1px black;
+    text-align: center;
+  }
+  
+  /* Content section and text styling */
+  h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  p,
+  li {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+  }
+  
+  /* Image styling */
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  

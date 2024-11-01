@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <style>
+    /* Center the form on the page */
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+    }
+
+    /* Form container */
+    form {
+      display: inline-block;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 1em;
+      background-color: #fff;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style each form paragraph */
+    p + p {
+      margin-top: 1em;
+    }
+
+    /* Label styling */
+    label {
+      display: inline-block;
+      min-width: 90px;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    /* Input and textarea styling */
+    input, textarea {
+      font: 1em sans-serif;
+      width: 300px;
+      padding: 0.5em;
+      border: 1px solid #999;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* Focused field styling */
+    input:focus, textarea:focus {
+      outline: 2px solid #0078d7;
+    }
+
+    /* Textarea specific styling */
+    textarea {
+      vertical-align: top;
+      height: 5em;
+      resize: vertical;
+    }
+
+    /* Button container */
+    .button {
+      padding-left: 90px;
+    }
+
+    /* Submit button styling */
+    button {
+      background-color: #0078d7;
+      color: white;
+      border: none;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    /* Button hover effect */
+    button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+  <form action="/my-handling-form-page" method="post">
+    <p>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="user_name" required>
+    </p>
+    <p>
+      <label for="mail">Email:</label>
+      <input type="email" id="mail" name="user_email" required>
+    </p>
+    <p>
+      <label for="msg">Message:</label>
+      <textarea id="msg" name="user_message" required></textarea>
+    </p>
+    <p class="button">
+      <button type="submit">Send your message</button>
+    </p>
+  </form>
+
+</body>
+</html>
