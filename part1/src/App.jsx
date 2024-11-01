@@ -39,14 +39,15 @@ const History = ({ allClicks }) => {
   return <div>Button press history: {allClicks.join(' ')}</div>;
 };
 
-// StatisticLine Component for displaying a single statistic
+// StatisticLine Component for displaying a single statistic row
 const StatisticLine = ({ text, value }) => (
-  <p>
-    {text}: {value}
-  </p>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 );
 
-// Statistics Component
+// Statistics Component displaying statistics in an HTML table
 const Statistics = ({ good, neutral, bad }) => {
   const totalFeedback = good + neutral + bad;
   const averageScore = totalFeedback === 0 ? 0 : (good - bad) / totalFeedback;
@@ -59,12 +60,16 @@ const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
       <h3>Statistics</h3>
-      <StatisticLine text="Good" value={good} />
-      <StatisticLine text="Neutral" value={neutral} />
-      <StatisticLine text="Bad" value={bad} />
-      <StatisticLine text="Total feedback" value={totalFeedback} />
-      <StatisticLine text="Average score" value={averageScore.toFixed(2)} />
-      <StatisticLine text="Positive feedback" value={`${positivePercentage.toFixed(2)}%`} />
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={good} />
+          <StatisticLine text="Neutral" value={neutral} />
+          <StatisticLine text="Bad" value={bad} />
+          <StatisticLine text="Total feedback" value={totalFeedback} />
+          <StatisticLine text="Average score" value={averageScore.toFixed(2)} />
+          <StatisticLine text="Positive feedback" value={`${positivePercentage.toFixed(2)}%`} />
+        </tbody>
+      </table>
     </div>
   );
 };
