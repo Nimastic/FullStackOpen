@@ -141,6 +141,10 @@ const App = () => {
     setVotes(updatedVotes);
   };
 
+  // Find the anecdote with the most votes
+  const maxVotes = Math.max(...votes);
+  const topAnecdoteIndex = votes.indexOf(maxVotes);
+
   return (
     <div>
       {/* Display course information */}
@@ -179,6 +183,15 @@ const App = () => {
 
       {/* Statistics Section */}
       <Statistics good={good} neutral={neutral} bad={bad} />
+
+      {/* Top Anecdote Section */}
+      {maxVotes > 0 && (
+        <div>
+          <h2>Anecdote with the Most Votes</h2>
+          <p>{anecdotes[topAnecdoteIndex]}</p>
+          <p>has {maxVotes} votes</p>
+        </div>
+      )}
     </div>
   );
 };
