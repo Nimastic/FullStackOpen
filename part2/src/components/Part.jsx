@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Part = ({ name, exercises }) => (
-  <li>
-    {name} - {exercises} exercises
-  </li>
-);
+const Part = ({ name, exercises }) => {
+  return (
+    <p>
+      {name} {exercises}
+    </p>
+  );
+};
 
 export default Part;
