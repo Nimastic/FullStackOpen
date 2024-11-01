@@ -3,7 +3,12 @@ import Header from './Header';
 import Content from './Content';
 
 const Course = ({ course }) => {
-  const totalExercises = course.parts.reduce((sum, part) => sum + part.exercises, 0);
+  // Calculate total exercises with debugging
+  const totalExercises = course.parts.reduce((sum, part) => {
+    console.log('Current sum:', sum, '| Current part exercises:', part.exercises);
+    return sum + part.exercises;
+  }, 0);
+  
 
   return (
     <div>
