@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
+// Header Component
 const Header = ({ course }) => <h1>{course}</h1>;
 
+// Content Component
 const Content = ({ parts }) => (
   <div>
     {parts.map((part, index) => (
@@ -10,12 +12,14 @@ const Content = ({ parts }) => (
   </div>
 );
 
+// Part Component
 const Part = ({ name, exercises }) => (
   <p>
     {name} {exercises}
   </p>
 );
 
+// Total Component
 const Total = ({ parts }) => {
   const total = parts.reduce((sum, part) => sum + part.exercises, 0);
   return <p>Number of exercises {total}</p>;
@@ -27,7 +31,7 @@ const Display = ({ counter }) => <div>{counter}</div>;
 // Button Component
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-// History Component for Conditional Rendering
+// History Component
 const History = ({ allClicks }) => {
   if (allClicks.length === 0) {
     return <div>The app is used by pressing the buttons</div>;
@@ -37,7 +41,6 @@ const History = ({ allClicks }) => {
 
 // Main App Component
 const App = () => {
-  // Define course object here
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -52,7 +55,6 @@ const App = () => {
   const [right, setRight] = useState(0);
   const [allClicks, setAllClicks] = useState([]);
 
-  // Handlers to update each state
   const increaseCounter = () => setCounter(counter + 1);
   const decreaseCounter = () => setCounter(counter - 1);
   const resetCounter = () => setCounter(0);
@@ -67,6 +69,16 @@ const App = () => {
     setRight(right + 1);
   };
 
+  // Feedback state
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  // Feedback handlers
+  const handleGood = () => setGood(good + 1);
+  const handleNeutral = () => setNeutral(neutral + 1);
+  const handleBad = () => setBad(bad + 1);
+
   return (
     <div>
       {/* Display course information */}
@@ -77,7 +89,7 @@ const App = () => {
       <h1>React State Management</h1>
       <Display counter={counter} />
 
-      {/* Control buttons */}
+      {/* Counter controls */}
       <Button onClick={increaseCounter} text="Increase Counter" />
       <Button onClick={resetCounter} text="Reset Counter" />
       <Button onClick={decreaseCounter} text="Decrease Counter" />
@@ -90,6 +102,16 @@ const App = () => {
 
       {/* Click history */}
       <History allClicks={allClicks} />
+
+      {/* Unicafe Feedback */}
+      <h2>Unicafe Feedback</h2>
+      <Button onClick={handleGood} text="Good" />
+      <Button onClick={handleNeutral} text="Neutral" />
+      <Button onClick={handleBad} text="Bad" />
+      <h3>Statistics</h3>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
     </div>
   );
 };
