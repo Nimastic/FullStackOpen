@@ -126,11 +126,19 @@ const App = () => {
   ];
 
   const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
 
   // Function to select a random anecdote
   const getRandomAnecdote = () => {
     const randomIndex = Math.floor(Math.random() * anecdotes.length);
     setSelected(randomIndex);
+  };
+
+  // Function to vote for the current anecdote
+  const voteAnecdote = () => {
+    const updatedVotes = [...votes];
+    updatedVotes[selected] += 1;
+    setVotes(updatedVotes);
   };
 
   return (
@@ -139,7 +147,7 @@ const App = () => {
       <Header course={course.name} />
       <Content parts={course.parts} />
       <Total parts={course.parts} />
-      
+
       <h1>React State Management</h1>
       <Display counter={counter} />
 
@@ -150,7 +158,9 @@ const App = () => {
 
       <h2>Anecdote of the Day</h2>
       <p>{anecdotes[selected]}</p>
-      <button onClick={getRandomAnecdote}>Show Random Anecdote</button>
+      <p>has {votes[selected]} votes</p>
+      <Button onClick={voteAnecdote} text="Vote" />
+      <Button onClick={getRandomAnecdote} text="Show Random Anecdote" />
 
       <h2>Button Click Counter</h2>
       <div>
