@@ -21,13 +21,23 @@ const Total = ({ parts }) => {
   return <p>Number of exercises {total}</p>;
 };
 
+// Display Component
 const Display = ({ counter }) => <div>{counter}</div>;
 
+// Button Component
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const App = () => {
-  const [counter, setCounter] = useState(0);
+// History Component for Conditional Rendering
+const History = ({ allClicks }) => {
+  if (allClicks.length === 0) {
+    return <div>The app is used by pressing the buttons</div>;
+  }
+  return <div>Button press history: {allClicks.join(' ')}</div>;
+};
 
+// Main App Component
+const App = () => {
+  // Define course object here
   const course = {
     name: 'Half Stack application development',
     parts: [
@@ -37,21 +47,49 @@ const App = () => {
     ],
   };
 
-  const increaseByOne = () => setCounter(counter + 1);
-  const decreaseByOne = () => setCounter(counter - 1);
-  const setToZero = () => setCounter(0);
+  const [counter, setCounter] = useState(0);
+  const [left, setLeft] = useState(0);
+  const [right, setRight] = useState(0);
+  const [allClicks, setAllClicks] = useState([]);
+
+  // Handlers to update each state
+  const increaseCounter = () => setCounter(counter + 1);
+  const decreaseCounter = () => setCounter(counter - 1);
+  const resetCounter = () => setCounter(0);
+
+  const handleLeftClick = () => {
+    setAllClicks(allClicks.concat('L'));
+    setLeft(left + 1);
+  };
+
+  const handleRightClick = () => {
+    setAllClicks(allClicks.concat('R'));
+    setRight(right + 1);
+  };
 
   return (
     <div>
+      {/* Display course information */}
       <Header course={course.name} />
       <Content parts={course.parts} />
       <Total parts={course.parts} />
-
-      <h2>Counter</h2>
+      
+      <h1>React State Management</h1>
       <Display counter={counter} />
-      <Button onClick={increaseByOne} text="plus" />
-      <Button onClick={setToZero} text="zero" />
-      <Button onClick={decreaseByOne} text="minus" />
+
+      {/* Control buttons */}
+      <Button onClick={increaseCounter} text="Increase Counter" />
+      <Button onClick={resetCounter} text="Reset Counter" />
+      <Button onClick={decreaseCounter} text="Decrease Counter" />
+
+      <h2>Button Click Counter</h2>
+      <div>
+        {left} <Button onClick={handleLeftClick} text="Left" />
+        <Button onClick={handleRightClick} text="Right" /> {right}
+      </div>
+
+      {/* Click history */}
+      <History allClicks={allClicks} />
     </div>
   );
 };
