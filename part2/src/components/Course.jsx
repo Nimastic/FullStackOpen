@@ -1,14 +1,27 @@
 import React from 'react';
-import Header from './Header';
-import Content from './Content';
 
+// Header component for displaying the course title
+const Header = ({ courseName }) => <h2>{courseName}</h2>;
+
+// Part component for displaying each course part and its exercises
+const Part = ({ part }) => (
+  <li>
+    {part.name} {part.exercises}
+  </li>
+);
+
+// Content component for rendering all parts of a course
+const Content = ({ parts }) => (
+  <ul>
+    {parts.map(part => (
+      <Part key={part.id} part={part} />
+    ))}
+  </ul>
+);
+
+// Course component for rendering the full course including the total exercises
 const Course = ({ course }) => {
-  // Calculate total exercises with debugging
-  const totalExercises = course.parts.reduce((sum, part) => {
-    console.log('Current sum:', sum, '| Current part exercises:', part.exercises);
-    return sum + part.exercises;
-  }, 0);
-  
+  const totalExercises = course.parts.reduce((sum, part) => sum + part.exercises, 0);
 
   return (
     <div>
