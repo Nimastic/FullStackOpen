@@ -28,7 +28,7 @@ const Total = ({ parts }) => {
 // Display Component
 const Display = ({ counter }) => <div>{counter}</div>;
 
-// Button Component
+// Button Component (Reusable for different buttons)
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
 // History Component
@@ -39,21 +39,32 @@ const History = ({ allClicks }) => {
   return <div>Button press history: {allClicks.join(' ')}</div>;
 };
 
+// StatisticLine Component for displaying a single statistic
+const StatisticLine = ({ text, value }) => (
+  <p>
+    {text}: {value}
+  </p>
+);
+
 // Statistics Component
 const Statistics = ({ good, neutral, bad }) => {
   const totalFeedback = good + neutral + bad;
   const averageScore = totalFeedback === 0 ? 0 : (good - bad) / totalFeedback;
   const positivePercentage = totalFeedback === 0 ? 0 : (good / totalFeedback) * 100;
 
+  if (totalFeedback === 0) {
+    return <p>No feedback given</p>;
+  }
+
   return (
     <div>
       <h3>Statistics</h3>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total feedback: {totalFeedback}</p>
-      <p>Average score: {averageScore.toFixed(2)}</p>
-      <p>Positive feedback: {positivePercentage.toFixed(2)}%</p>
+      <StatisticLine text="Good" value={good} />
+      <StatisticLine text="Neutral" value={neutral} />
+      <StatisticLine text="Bad" value={bad} />
+      <StatisticLine text="Total feedback" value={totalFeedback} />
+      <StatisticLine text="Average score" value={averageScore.toFixed(2)} />
+      <StatisticLine text="Positive feedback" value={`${positivePercentage.toFixed(2)}%`} />
     </div>
   );
 };
@@ -98,9 +109,6 @@ const App = () => {
   const handleNeutral = () => setNeutral(neutral + 1);
   const handleBad = () => setBad(bad + 1);
 
-  // Check if feedback has been given
-  const hasFeedback = good > 0 || neutral > 0 || bad > 0;
-
   return (
     <div>
       {/* Display course information */}
@@ -131,12 +139,8 @@ const App = () => {
       <Button onClick={handleNeutral} text="Neutral" />
       <Button onClick={handleBad} text="Bad" />
 
-      {/* Conditional rendering for statistics */}
-      {hasFeedback ? (
-        <Statistics good={good} neutral={neutral} bad={bad} />
-      ) : (
-        <p>No feedback given</p>
-      )}
+      {/* Statistics Section */}
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
