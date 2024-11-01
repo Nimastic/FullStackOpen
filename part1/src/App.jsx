@@ -98,6 +98,9 @@ const App = () => {
   const handleNeutral = () => setNeutral(neutral + 1);
   const handleBad = () => setBad(bad + 1);
 
+  // Check if feedback has been given
+  const hasFeedback = good > 0 || neutral > 0 || bad > 0;
+
   return (
     <div>
       {/* Display course information */}
@@ -128,8 +131,12 @@ const App = () => {
       <Button onClick={handleNeutral} text="Neutral" />
       <Button onClick={handleBad} text="Bad" />
 
-      {/* Statistics */}
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      {/* Conditional rendering for statistics */}
+      {hasFeedback ? (
+        <Statistics good={good} neutral={neutral} bad={bad} />
+      ) : (
+        <p>No feedback given</p>
+      )}
     </div>
   );
 };
