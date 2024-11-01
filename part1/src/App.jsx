@@ -39,6 +39,25 @@ const History = ({ allClicks }) => {
   return <div>Button press history: {allClicks.join(' ')}</div>;
 };
 
+// Statistics Component
+const Statistics = ({ good, neutral, bad }) => {
+  const totalFeedback = good + neutral + bad;
+  const averageScore = totalFeedback === 0 ? 0 : (good - bad) / totalFeedback;
+  const positivePercentage = totalFeedback === 0 ? 0 : (good / totalFeedback) * 100;
+
+  return (
+    <div>
+      <h3>Statistics</h3>
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
+      <p>Total feedback: {totalFeedback}</p>
+      <p>Average score: {averageScore.toFixed(2)}</p>
+      <p>Positive feedback: {positivePercentage.toFixed(2)}%</p>
+    </div>
+  );
+};
+
 // Main App Component
 const App = () => {
   const course = {
@@ -79,11 +98,6 @@ const App = () => {
   const handleNeutral = () => setNeutral(neutral + 1);
   const handleBad = () => setBad(bad + 1);
 
-  // Statistics calculations
-  const totalFeedback = good + neutral + bad;
-  const averageScore = totalFeedback === 0 ? 0 : (good - bad) / totalFeedback;
-  const positivePercentage = totalFeedback === 0 ? 0 : (good / totalFeedback) * 100;
-
   return (
     <div>
       {/* Display course information */}
@@ -114,14 +128,8 @@ const App = () => {
       <Button onClick={handleNeutral} text="Neutral" />
       <Button onClick={handleBad} text="Bad" />
 
-      {/* Expanded Statistics */}
-      <h3>Statistics</h3>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total feedback: {totalFeedback}</p>
-      <p>Average score: {averageScore.toFixed(2)}</p>
-      <p>Positive feedback: {positivePercentage.toFixed(2)}%</p>
+      {/* Statistics */}
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   );
 };
